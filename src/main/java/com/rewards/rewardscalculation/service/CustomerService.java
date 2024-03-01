@@ -12,7 +12,5 @@ public interface CustomerService {
 
     void saveACustomer(CustomerEntity customerEntity);
 
-    void deactivateACustomer(Long customerId);
-
     CustomerEntity findACustomerById(Long id);
 }

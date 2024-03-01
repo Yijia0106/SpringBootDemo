@@ -18,7 +18,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionEntity> findBetweenDateAndCustomerId(Date from, Date to, Long customerId) {
-        return transactionRepository.findAllByDateBetweenAndCustomerIdOrderByDate(from, to, customerId);
+        return transactionRepository.findAllByDateBetweenAndCustomerId(from, to, customerId);
     }
 
     @Override
@@ -35,8 +35,6 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public String generateRewardsString(Long customerId) {
         StringBuilder sb = new StringBuilder();
-        String newline = System.lineSeparator();
-
         Date to = new Date();
         Date from = new Date(System.currentTimeMillis() - 24L * 60 * 60 * 1000 * 90);
         List<TransactionEntity> transactionEntities = findBetweenDateAndCustomerId(from, to, customerId);
@@ -69,10 +67,10 @@ public class TransactionServiceImpl implements TransactionService {
         transactionRepository.deleteATransaction(tId);
     }
 
-    @Override
-    public TransactionEntity findATransactionById(Long tId) {
-        return transactionRepository.findATransactionByTId(tId);
-    }
+//    @Override
+//    public TransactionEntity findATransactionById(Long tId) {
+//        return transactionRepository.findBy(ttId);
+//    }
 
     public int calculateRewards(double rewardsAmt) {
         if (rewardsAmt <= 50) return 0;

@@ -22,5 +22,5 @@ public interface TransactionService {
 
     void deleteATransaction(Long tId);
 
-    TransactionEntity findATransactionById(Long tId);
+//    TransactionEntity findATransactionById(Long tId);
 }

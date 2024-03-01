@@ -28,11 +28,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deactivateACustomer(Long customerId) {
-        customerRepository.updateCustomerIsValid(customerId);
-    }
-
-    @Override
     public CustomerEntity findACustomerById(Long id) {
         return customerRepository.findByCustomerId(id);
     }

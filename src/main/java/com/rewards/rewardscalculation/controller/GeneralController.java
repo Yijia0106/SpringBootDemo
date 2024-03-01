@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -58,9 +57,9 @@ public class GeneralController {
      * get a specific customer by id
      */
     @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getACustomerById(@PathVariable Long id) throws UserNotFoundException{
+    public ResponseEntity<?> getACustomerById(@PathVariable Long id) throws UserNotFoundException {
         CustomerEntity customerEntity = customerService.findACustomerById(id);
-        if(customerEntity == null){
+        if (customerEntity == null) {
             throw new UserNotFoundException("No qualified user exists.");
         }
         return new ResponseEntity<CustomerEntity>(customerEntity, HttpStatus.OK);
@@ -79,9 +78,9 @@ public class GeneralController {
      * delete (deactivate) a customer
      */
     @RequestMapping(value = "/customers/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deactivateACustomer(@PathVariable Long id){
+    public ResponseEntity<?> deactivateACustomer(@PathVariable Long id) {
         CustomerEntity customerEntity = customerService.findACustomerById(id);
-        if(customerEntity == null){
+        if (customerEntity == null) {
             throw new UserNotFoundException("No qualified user exists.");
         }
 
@@ -112,24 +111,24 @@ public class GeneralController {
      * delete a transaction entry
      */
     @RequestMapping(value = "/transactions/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteATransaction(@PathVariable Long id){
+    public ResponseEntity<?> deleteATransaction(@PathVariable Long id) {
         transactionService.deleteATransaction(id);
         return new ResponseEntity<>("The transaction is deleted.", HttpStatus.OK);
     }
 
-    /**
-     * update the amount for a transaction entry
-     */
-    @RequestMapping(value = "/transactions/{id}", method = RequestMethod.PATCH)
-    public ResponseEntity<?> deleteATransaction(@PathVariable Long id, @RequestBody double amt){
-        TransactionEntity transactionEntity = transactionService.findATransactionById(id);
-        if(transactionEntity == null){
-            throw new TransactionNotFoundException("No qualified transaction exists.");
-        }
-        transactionEntity.setAmount(amt);
-        transactionService.saveATransaction(transactionEntity);
-        return new ResponseEntity<>("The new transaction amount is saved.", HttpStatus.OK);
-    }
+//    /**
+//     * update the amount for a transaction entry
+//     */
+//    @RequestMapping(value = "/transactions/{id}", method = RequestMethod.PATCH)
+//    public ResponseEntity<?> deleteATransaction(@PathVariable Long id, @RequestBody double amt){
+//        TransactionEntity transactionEntity = transactionService.findATransactionById(id);
+//        if(transactionEntity == null){
+//            throw new TransactionNotFoundException("No qualified transaction exists.");
+//        }
+//        transactionEntity.setAmount(amt);
+//        transactionService.saveATransaction(transactionEntity);
+//        return new ResponseEntity<>("The new transaction amount is saved.", HttpStatus.OK);
+//    }
 
 
 }
